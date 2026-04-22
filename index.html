@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>drvizuals — Creative Direction & Content Production</title>
+  <meta name="description" content="One session. 45+ pieces. One month of content, handled." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:#F2EDE3;--parch:#E8E0D0;--sand:#D4C4A8;
+      --espresso:#4A2D1C;--brown:#5C3820;--bark:#6B4226;
+      --muted:#8A6E52;--amber:#B8742A;--amber-l:#D4923C;
+      --white:#FAF7F2;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--cream);color:#243D4D;font-family:'Outfit',sans-serif;font-size:16px;line-height:1.65;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.028;mix-blend-mode:multiply}
+    h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.06;letter-spacing:-.01em}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:28px 64px;transition:padding .4s,background .4s,border-color .4s}
+    nav.scrolled{padding:18px 64px;background:rgba(242,237,227,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--sand)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;letter-spacing:.08em;color:#243D4D;text-decoration:none}
+    .nav-center{display:flex;gap:40px;align-items:center;position:absolute;left:50%;transform:translateX(-50%)}
+    .nav-center a{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s}
+    .nav-center a:hover{color:#243D4D}
+    .nav-right{display:flex;align-items:center}
+    .nav-book{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--white)!important;background:#1B3A4B;padding:10px 24px;text-decoration:none;transition:background .25s}
+    .nav-book:hover{background:#244B5E}
+
+    #hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:160px 48px 100px;position:relative;overflow:hidden;background:var(--cream)}
+    #hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 50% 45%,rgba(184,116,42,.08) 0%,transparent 65%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(184,116,42,.04) 0%,transparent 60%)}
+    #hero::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 80px,rgba(180,140,80,.04) 80px,rgba(180,140,80,.04) 81px)}
+    .hero-content{position:relative;z-index:2;max-width:860px}
+    .hero-tag{display:inline-flex;align-items:center;gap:14px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin-bottom:36px;opacity:0;animation:riseIn .9s .2s cubic-bezier(.16,1,.3,1) forwards}
+    .hero-tag::before,.hero-tag::after{content:'';width:28px;height:1px;background:var(--amber);opacity:.6}
+    .hero-h1{font-size:clamp(60px,9.5vw,136px);font-weight:300;color:#243D4D;margin-bottom:6px;opacity:0;animation:riseIn 1s .4s cubic-bezier(.16,1,.3,1) forwards}
+    .hero-h1-em{font-size:clamp(60px,9.5vw,136px);font-weight:300;font-style:italic;color:var(--amber);margin-bottom:36px;opacity:0;animation:riseIn 1s .58s cubic-bezier(.16,1,.3,1) forwards}
+    .hero-rule{width:48px;height:1px;background:var(--sand);margin:0 auto 32px;opacity:0;animation:riseIn .8s .75s forwards}
+    .hero-sub{font-family:'Outfit',sans-serif;font-size:16px;font-weight:300;color:var(--muted);line-height:1.8;max-width:420px;margin:0 auto 52px;opacity:0;animation:riseIn .9s .85s cubic-bezier(.16,1,.3,1) forwards}
+    .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;opacity:0;animation:riseIn .9s 1s cubic-bezier(.16,1,.3,1) forwards}
+    .btn-dark{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;background:#1B3A4B;color:var(--white);padding:16px 40px;text-decoration:none;transition:background .25s,transform .2s;display:inline-block}
+    .btn-dark:hover{background:#244B5E;transform:translateY(-2px)}
+    .btn-warm{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--sand);color:var(--muted);padding:16px 40px;text-decoration:none;transition:border-color .25s,color .25s;display:inline-block}
+    .btn-warm:hover{border-color:#243D4D;color:#243D4D}
+    .hero-scroll{position:absolute;bottom:44px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:fadeIn 1s 1.5s forwards}
+    .hero-scroll span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand)}
+    .scroll-bar{width:1px;height:40px;background:linear-gradient(to bottom,var(--amber),transparent);animation:pulse 2.2s infinite}
+
+    .ticker{background:var(--amber);padding:13px 0;overflow:hidden;white-space:nowrap}
+    .ticker-track{display:inline-block;animation:ticker 35s linear infinite}
+    .ticker-track span{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--white);padding:0 36px;opacity:.9}
+    .ticker-track span::before{content:'◆';margin-right:36px;opacity:.5;font-size:7px}
+
+    .section{padding:120px 64px}
+    .divider{height:1px;background:var(--sand);margin:0 64px;opacity:.6}
+    .eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.28em;text-transform:uppercase;color:var(--amber);margin-bottom:20px;display:flex;align-items:center;gap:14px;justify-content:center}
+    .eyebrow::before,.eyebrow::after{content:'';width:20px;height:1px;background:var(--amber);opacity:.6}
+    .eyebrow.left{justify-content:flex-start}
+    .eyebrow.left::after{display:none}
+    .display{font-size:clamp(44px,5.5vw,76px);text-align:center;color:#243D4D;margin-bottom:20px;font-weight:300}
+    .display em{font-style:italic;color:var(--amber)}
+
+    /* GAP */
+    #the-gap{background:var(--cream)}
+    .gap-lead{max-width:660px;margin:0 auto 60px;text-align:center}
+    .gap-lead p{font-size:16px;color:var(--muted);line-height:1.9;margin-bottom:20px}
+    .gap-lead p strong{color:#243D4D;font-weight:500}
+    .gap-two{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--sand);max-width:900px;margin:0 auto}
+    .gap-col{padding:52px 48px;background:var(--cream)}
+    .gap-col-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:20px;display:block}
+    .gap-col p{font-size:15px;color:var(--muted);line-height:2}
+    .gap-col.active{background:#1B3A4B;border-left:3px solid var(--amber)}
+    .gap-col.active .gap-col-tag{color:var(--amber)}
+    .gap-col.active p{color:rgba(250,247,242,.75)}
+
+    /* ENGINE */
+    #content-engine{background:var(--white)}
+    .engine-wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--sand);max-width:1000px;margin:0 auto}
+    .engine-left{padding:72px 60px;border-right:1px solid var(--sand);background:#1B3A4B}
+    .engine-left h2{font-size:clamp(44px,5.5vw,80px);margin-bottom:28px;color:var(--white);line-height:1}
+    .engine-left h2 em{font-style:italic;color:var(--amber)}
+    .engine-left p{font-size:15px;color:rgba(250,247,242,.65);line-height:1.9;margin-bottom:16px}
+    .engine-left p strong{color:var(--white);font-weight:500}
+    .engine-right{padding:72px 52px;background:var(--white)}
+    .engine-feat{padding:28px 0;border-bottom:1px solid var(--parch)}
+    .engine-feat:last-child{border-bottom:none;padding-bottom:0}
+    .engine-feat-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;color:var(--amber);margin-bottom:10px}
+    .engine-feat h3{font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:#243D4D;margin-bottom:8px}
+    .engine-feat p{font-size:13px;color:var(--muted);line-height:1.85}
+
+    /* STATS */
+    #stats{background:#1B3A4B;padding:120px 64px}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(250,247,242,.08);margin-top:60px}
+    .stat{background:rgba(250,247,242,.03);padding:56px 36px;text-align:center;transition:background .3s}
+    .stat:hover{background:rgba(250,247,242,.06)}
+    .stat-n{font-family:'Cormorant Garamond',serif;font-size:88px;font-weight:300;color:var(--amber);line-height:1;margin-bottom:14px}
+    .stat-l{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,247,242,.4);line-height:1.6}
+
+    /* CASE STUDIES TEASER */
+    #case-studies{background:var(--parch);padding:120px 64px;text-align:center}
+    .teaser-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--sand);margin-bottom:48px}
+    .teaser-card{background:var(--cream);padding:36px 28px;text-align:left;transition:background .3s}
+    .teaser-card:hover{background:var(--white)}
+    .teaser-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:12px}
+    .teaser-card h3{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:#243D4D;margin-bottom:8px}
+    .teaser-card p{font-size:11px;color:var(--muted)}
+
+    /* PROCESS */
+    #process{background:var(--white);padding:120px 64px}
+    .process-head{text-align:center;margin-bottom:72px}
+    .process-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:32px}
+    .step-n{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;color:var(--amber);margin-bottom:28px;display:block}
+    .step h3{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;color:#243D4D;margin-bottom:14px}
+    .step p{font-size:13px;color:var(--muted);line-height:2}
+
+    /* ABOUT */
+    #about{background:var(--cream);padding:120px 64px}
+    .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
+    .about-img{position:relative;height:640px;overflow:hidden}
+    .about-img img{width:100%;height:100%;object-fit:cover;object-position:center 15%}
+    .about-img::after{content:'';position:absolute;inset:0;border:1px solid rgba(184,116,42,.15);pointer-events:none}
+    .about-img-badge{position:absolute;bottom:0;right:0;background:#1B3A4B;padding:18px 24px}
+    .about-img-badge span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);display:block;line-height:2}
+    .about-text h2{font-size:clamp(36px,4.5vw,56px);margin-bottom:32px;color:#243D4D;font-weight:300}
+    .about-text h2 em{font-style:italic;color:var(--amber)}
+    .about-text p{font-size:15px;color:var(--muted);line-height:2;margin-bottom:20px}
+    .about-text p strong{color:#243D4D;font-weight:500}
+    .about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:32px}
+    .tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--bark);border:1px solid var(--sand);padding:7px 16px}
+
+    /* WWA */
+    #wwa{background:var(--parch);padding:120px 64px}
+    .wwa-wrap{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
+    .wwa-text h2{font-size:clamp(36px,4.5vw,56px);margin-bottom:28px;color:#243D4D;font-weight:300}
+    .wwa-text h2 em{font-style:italic;color:var(--amber)}
+    .wwa-text p{font-size:15px;color:var(--muted);line-height:2;margin-bottom:20px}
+    .wwa-text p strong{color:#243D4D;font-weight:500}
+    .wwa-box{background:#1B3A4B}
+    .wwa-box-head{padding:32px 44px;border-bottom:1px solid rgba(250,247,242,.08)}
+    .wwa-box-head p{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber)}
+    .wwa-box-list{padding:36px 44px;display:flex;flex-direction:column;gap:20px}
+    .wwa-item{display:flex;gap:18px;align-items:flex-start}
+    .wwa-item-dot{width:4px;height:4px;background:var(--amber);border-radius:50%;margin-top:9px;flex-shrink:0}
+    .wwa-item p{font-size:13px;color:rgba(250,247,242,.65);line-height:1.85}
+    .wwa-box-foot{padding:24px 44px;border-top:1px solid rgba(250,247,242,.08);display:flex;justify-content:space-between;align-items:center}
+    .wwa-box-foot p{font-family:'DM Mono',monospace;font-size:10px;color:rgba(250,247,242,.25)}
+    .wwa-box-foot span{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:rgba(184,116,42,.35);letter-spacing:.1em}
+
+    /* OTHER */
+    #other{background:var(--white);padding:120px 64px}
+    .other-head{text-align:center;margin-bottom:60px}
+    .other-head p{font-size:15px;color:var(--muted);max-width:400px;margin:16px auto 0;line-height:1.9}
+    .other-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--sand)}
+    .other-card{background:var(--cream);padding:48px 44px;transition:background .3s}
+    .other-card:hover{background:var(--parch)}
+    .other-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:18px;display:block}
+    .other-card h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:#243D4D;margin-bottom:14px}
+    .other-card p{font-size:13px;color:var(--muted);line-height:2}
+    .other-foot{text-align:center;margin-top:36px}
+    .other-foot p{font-size:14px;color:var(--muted)}
+    .other-foot a{color:var(--amber);text-decoration:none}
+
+    /* CTA */
+    #cta{background:#1B3A4B;text-align:center;padding:140px 64px;position:relative;overflow:hidden}
+    #cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(184,116,42,.1) 0%,transparent 65%)}
+    #cta .eyebrow{color:var(--amber)}
+    #cta .eyebrow::before,#cta .eyebrow::after{background:var(--amber)}
+    #cta h2{font-size:clamp(44px,6.5vw,96px);color:var(--white);margin-bottom:20px;position:relative;font-weight:300}
+    #cta h2 em{font-style:italic;color:var(--amber)}
+    #cta p{font-size:15px;color:rgba(250,247,242,.55);max-width:400px;margin:0 auto 48px;line-height:2;position:relative}
+    .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+    .btn-amber-outline{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--amber);color:var(--amber);padding:16px 40px;text-decoration:none;transition:background .25s,color .25s;display:inline-block}
+    .btn-amber-outline:hover{background:var(--amber);color:#243D4D}
+    .cta-email{font-size:13px;color:rgba(250,247,242,.35);margin-top:24px;position:relative}
+    .cta-email a{color:var(--amber);text-decoration:none}
+
+    footer{background:#244B5E;padding:60px 64px}
+    .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:60px;margin-bottom:48px}
+    .footer-logo-el{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;letter-spacing:.08em;color:var(--cream);display:block;margin-bottom:12px}
+    .footer-brand p{font-size:13px;color:rgba(250,247,242,.4);line-height:1.9}
+    .footer-col h4{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin-bottom:20px}
+    .footer-col a{display:block;font-size:13px;color:rgba(250,247,242,.45);text-decoration:none;margin-bottom:12px;transition:color .2s}
+    .footer-col a:hover{color:var(--cream)}
+    .footer-bottom{padding-top:32px;border-top:1px solid rgba(250,247,242,.08);display:flex;justify-content:space-between;align-items:center}
+    .footer-bottom p{font-size:12px;color:rgba(250,247,242,.25)}
+
+    @keyframes riseIn{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+    @media(max-width:1024px){nav{padding:22px 32px}.nav-center{display:none}.section,#stats,#case-studies,#process,#about,#wwa,#other,#cta{padding:100px 32px}.divider{margin:0 32px}}
+    @media(max-width:800px){nav{padding:18px 24px}.section,#stats,#case-studies,#process,#about,#wwa,#other{padding:80px 24px}#hero{padding:140px 24px 80px}#cta{padding:80px 24px}.divider{margin:0 24px}.gap-two{grid-template-columns:1fr}.engine-wrap{grid-template-columns:1fr}.engine-left{border-right:none;border-bottom:1px solid rgba(250,247,242,.08);padding:52px 32px}.engine-right{padding:48px 32px}.stats-row{grid-template-columns:1fr 1fr}.teaser-grid{grid-template-columns:1fr 1fr}.process-steps{grid-template-columns:1fr 1fr;gap:32px}.about-wrap{grid-template-columns:1fr;gap:48px}.about-img{height:440px}.wwa-wrap{grid-template-columns:1fr;gap:48px}.other-grid{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr;gap:36px}.footer-bottom{flex-direction:column;gap:12px;text-align:center}}
+    @media(max-width:500px){.stats-row{grid-template-columns:1fr}.process-steps{grid-template-columns:1fr}.teaser-grid{grid-template-columns:1fr}.hero-actions,.cta-actions{flex-direction:column;align-items:center}}
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="nav-logo" href="#">drvizuals</a>
+  <div class="nav-center">
+    <a href="#content-engine">Content Engine</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="#about">About</a>
+    <a href="mailto:dani@drvizualss.com">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://calendly.com/danirua/content-strategy" class="nav-book" target="_blank">Book a Call</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-content">
+    <p class="hero-tag">Creative Direction & Content Production</p>
+    <h1 class="hero-h1">Welcome to a world</h1>
+    <h1 class="hero-h1-em">of creativity.</h1>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Filmmaker. Photographer. Creative Director.<br/>Turning vision into content that moves people.</p>
+    <div class="hero-actions">
+      <a href="#content-engine" class="btn-dark">Explore the Content Engine</a>
+      <a href="#the-gap" class="btn-warm">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-bar"></div></div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Content Engine</span><span>Brand Films</span><span>Hotel &amp; Travel</span><span>World Wide</span><span>Daily Content</span><span>One Session</span><span>45+ Pieces</span><span>Global Ready</span>
+    <span>Content Engine</span><span>Brand Films</span><span>Hotel &amp; Travel</span><span>World Wide</span><span>Daily Content</span><span>One Session</span><span>45+ Pieces</span><span>Global Ready</span>
+  </div>
+</div>
+
+<section id="the-gap" class="section">
+  <div class="eyebrow reveal">The Insight</div>
+  <h2 class="display reveal">The world doesn't have a creation problem.<br/>It has a <em>distribution</em> problem.</h2>
+  <div class="gap-lead reveal">
+    <p>After years behind the camera — filming, directing, building — I saw something nobody was solving. Talented people investing in content that went nowhere. Not because it wasn't good. Because there was no system behind it.</p>
+    <p><strong>That's why I built World Wide Agency — and the Content Engine is how we solve it.</strong></p>
+  </div>
+  <div class="gap-two reveal">
+    <div class="gap-col">
+      <span class="gap-col-tag">What most creatives deliver</span>
+      <p>Great content. One shoot. A folder of files. Then silence. No strategy. No system. No consistency.</p>
+    </div>
+    <div class="gap-col active">
+      <span class="gap-col-tag">What World Wide Agency delivers</span>
+      <p>We film it, edit it, caption it, and hand it back ready to go. One session a month. That's your whole content calendar — done.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="content-engine" class="section" style="background:var(--white)">
+  <div class="eyebrow reveal">The Core Offer</div>
+  <div class="engine-wrap reveal">
+    <div class="engine-left">
+      <h2>The Content<br/><em>Engine.</em></h2>
+      <p>One session. 45+ pieces. One month of content, handled.</p>
+      <p>In person or remote — we guide you on what to say and how to film it. <strong>As simple as shooting with your phone.</strong> No extra equipment, no extra cost.</p>
+      <a href="https://calendly.com/danirua/content-strategy" target="_blank" style="margin-top:36px;display:inline-block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;border:1px solid rgba(250,247,242,.2);color:rgba(250,247,242,.7);padding:14px 36px;text-decoration:none;transition:border-color .25s,color .25s">Book a Session →</a>
+    </div>
+    <div class="engine-right">
+      <div class="engine-feat"><div class="engine-feat-num">01</div><h3>Content Pillars & Scripting</h3><p>We sit down together, identify your pillars, and script everything around your offer and the exact people you want to attract.</p></div>
+      <div class="engine-feat"><div class="engine-feat-num">02</div><h3>Full Production</h3><p>Editing, color grading, captions, music. Everything handled start to finish — packaged and ready the moment you need it.</p></div>
+      <div class="engine-feat"><div class="engine-feat-num">03</div><h3>45+ Pieces from One Session</h3><p>One film session per month. Delivered, organised, and ready to post.</p></div>
+      <div class="engine-feat"><div class="engine-feat-num">04</div><h3>Built Around Your Voice</h3><p>Every piece crafted around how you talk, how you think, and who you're trying to reach.</p></div>
+      <div class="engine-feat"><div class="engine-feat-num">05</div><h3>AI Integration <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--amber);margin-left:8px;">OPTIONAL</span></h3><p>We can integrate AI agents and AI-assisted tools directly into your content workflow — faster output, smarter repurposing, and automation that keeps your brand showing up even when you're not.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="stats">
+  <div style="text-align:center">
+    <div class="eyebrow reveal" style="color:var(--amber)">The Track Record</div>
+    <h2 class="display reveal" style="color:var(--white)">Showing up is<br/>half the <em>battle.</em></h2>
+    <p class="reveal" style="font-size:15px;color:rgba(250,247,242,.45);max-width:420px;margin:0 auto;line-height:1.9">The brands that win online aren't always the best — they're the most consistent.</p>
+  </div>
+  <div class="stats-row">
+    <div class="stat reveal"><div class="stat-n">30+</div><div class="stat-l">Brands Served</div></div>
+    <div class="stat reveal d1"><div class="stat-n">500+</div><div class="stat-l">Pieces Created</div></div>
+    <div class="stat reveal d2"><div class="stat-n">4</div><div class="stat-l">Countries</div></div>
+    <div class="stat reveal d3"><div class="stat-n">1×</div><div class="stat-l">Session / Month</div></div>
+  </div>
+</section>
+
+<div class="divider" style="margin:0;opacity:.2"></div>
+
+<section id="case-studies">
+  <div class="eyebrow reveal">Case Studies</div>
+  <h2 class="display reveal">Real clients.<br/>Real <em>results.</em></h2>
+  <p class="reveal" style="font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 52px;line-height:2">From multimillion dollar luxury brands to veterans coaches generating $100K/month.</p>
+  <div class="teaser-grid reveal">
+    <div class="teaser-card"><span class="teaser-tag">Luxury Florals</span><h3>South Florals &amp; NuFlorist</h3><p>100+ pieces · 4K views · Full ecosystem</p></div>
+    <div class="teaser-card"><span class="teaser-tag">Real Estate Coaching</span><h3>Coach Carlos Herrán</h3><p>200+ pieces · 1,974 likes · 1,086 saves</p></div>
+    <div class="teaser-card"><span class="teaser-tag">Veterans Coaching</span><h3>The DAV Coach</h3><p>24 videos · 2 viral · $100K/month</p></div>
+    <div class="teaser-card"><span class="teaser-tag">Lifestyle &amp; Real Estate</span><h3>Mike Van Houdt</h3><p>Canada · Medellín · Cars · Brands</p></div>
+  </div>
+  <div style="text-align:center;margin-top:48px" class="reveal">
+    <a href="case-studies.html" class="btn-dark">See All Case Studies →</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="process" class="section" style="background:var(--white)">
+  <div class="process-head">
+    <div class="eyebrow reveal">The Process</div>
+    <h2 class="display reveal">Four steps.<br/>One month of <em>content.</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="step reveal"><span class="step-n">01</span><h3>Strategy Call</h3><p>We align on your goals, audience, and content pillars. No fluff, just clarity.</p></div>
+    <div class="step reveal d1"><span class="step-n">02</span><h3>Script & Plan</h3><p>We craft the messaging, hooks, and structure. Built around your voice.</p></div>
+    <div class="step reveal d2"><span class="step-n">03</span><h3>One Session</h3><p>In person or remote. As simple as your phone. We guide you the whole way.</p></div>
+    <div class="step reveal d3"><span class="step-n">04</span><h3>45+ Pieces Delivered</h3><p>Edited, graded, captioned, organised. Ready to post for the entire month.</p></div>
+    <div class="step reveal d3" style="transition-delay:.4s"><span class="step-n" style="color:var(--amber)">+AI</span><h3>AI Integration</h3><p>Optionally we integrate AI into your content system — smarter workflows, faster turnaround, and automation that scales your presence.</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-img reveal">
+      <img src="daniel.jpg" alt="Daniel Rua — Creative Director and Filmmaker"/>
+      <div class="about-img-badge"><span>Daniel Rua</span><span>Creative Director</span></div>
+    </div>
+    <div class="about-text reveal d2">
+      <div class="eyebrow left">About Daniel</div>
+      <h2 style="margin-top:24px">Creative Director,<br/>Filmmaker,<br/><em>Photographer.</em></h2>
+      <p style="margin-top:28px">I've lived between Miami and Medellín, moving between worlds and cultures. I love the craft of filmmaking, the precision of photography, the art of visual storytelling.</p>
+      <p>But I saw a gap nobody was solving. The world didn't have a creation problem. <strong>The real problem was distribution. Consistency. Systems.</strong></p>
+      <p>That's why I built the Content Engine — powered by World Wide Agency. One session a month. Delivered and ready to post, every single day.</p>
+      <div class="about-tags">
+        <span class="tag">Creative Director</span><span class="tag">Filmmaker</span><span class="tag">Photographer</span><span class="tag">Miami / Medellín</span><span class="tag">English / Español</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="wwa">
+  <div class="wwa-wrap">
+    <div class="wwa-text reveal">
+      <div class="eyebrow left">The Machine Behind It</div>
+      <h2 style="margin-top:24px">World Wide<br/><em>Agency.</em></h2>
+      <p style="margin-top:28px">drvizuals is the creative identity — the eye behind the lens, the voice, the vision. World Wide Agency is the operational engine that powers it all.</p>
+      <p>WWA is built to handle scale. <strong>Everything that makes "one session, 45 pieces" possible at a professional level.</strong></p>
+      <p>The creative vision is drvizuals. The machine behind it is WWA.</p>
+    </div>
+    <div class="wwa-box reveal d2">
+      <div class="wwa-box-head"><p>What WWA handles</p></div>
+      <div class="wwa-box-list">
+        <div class="wwa-item"><div class="wwa-item-dot"></div><p>Full-service content production & editing</p></div>
+        <div class="wwa-item"><div class="wwa-item-dot"></div><p>Content delivery & distribution systems</p></div>
+        <div class="wwa-item"><div class="wwa-item-dot"></div><p>Client onboarding & strategy</p></div>
+        <div class="wwa-item"><div class="wwa-item-dot"></div><p>Hotel, travel & lifestyle campaign execution</p></div>
+        <div class="wwa-item"><div class="wwa-item-dot"></div><p>Scalable team & collaborator network</p></div>
+      </div>
+      <div class="wwa-box-foot"><p>drvizuals.com</p><span>WWA</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="other">
+  <div class="other-head">
+    <div class="eyebrow reveal">Beyond the Engine</div>
+    <h2 class="display reveal">Other ways to<br/>work <em>together.</em></h2>
+    <p class="reveal">The Content Engine is our focus. But it's not all we do.</p>
+  </div>
+  <div class="other-grid">
+    <div class="other-card reveal"><span class="other-tag">Hotel &amp; Travel</span><h3>Visual storytelling for places worth visiting.</h3><p>Boutique hotels, glamping, travel operators. We make people feel it before they book.</p></div>
+    <div class="other-card reveal d1"><span class="other-tag">Brand Films</span><h3>Identity-level work for brands with something to say.</h3><p>Launch videos, campaigns, editorial photography. Work that defines a brand for years.</p></div>
+    <div class="other-card reveal d2"><span class="other-tag">UGC Production</span><h3>Content built to stop the scroll and drive action.</h3><p>Authentic, platform-native content for ad performance and organic reach.</p></div>
+  </div>
+  <div class="other-foot reveal"><p>Not sure which fits? <a href="https://calendly.com/danirua/content-strategy" target="_blank">Let's talk on a call →</a></p></div>
+</section>
+
+<div class="divider"></div>
+
+<section id="cta">
+  <div class="reveal" style="position:relative;z-index:1">
+    <div class="eyebrow">Let's Build</div>
+    <h2>Ready to stop<br/>struggling with<br/><em>content?</em></h2>
+    <p>Book a strategy call. No pitch, no pressure. Just a conversation about what you're building and how we can help.</p>
+    <div class="cta-actions">
+      <a href="https://calendly.com/danirua/content-strategy" class="btn-amber-outline" target="_blank">Book a Strategy Call</a>
+    </div>
+    <p class="cta-email">Or email directly: <a href="mailto:dani@drvizualss.com">dani@drvizualss.com</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo-el">drvizuals</span>
+      <p>Creative Direction & Content Production<br/>Miami / Medellín</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="#content-engine">Content Engine</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="#about">About</a>
+      <a href="#cta">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://www.instagram.com/drvizuals" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@donewithcontent_" target="_blank">TikTok</a>
+      <a href="mailto:dani@drvizualss.com">dani@drvizualss.com</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 drvizuals. All rights reserved.</p>
+    <p>Powered by World Wide Agency</p>
+  </div>
+</footer>
+
+<script>
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>80)});
+  const reveals=document.querySelectorAll('.reveal');
+  const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -48px 0px'});
+  reveals.forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

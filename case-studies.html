@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Studies — drvizuals</title>
+  <meta name="description" content="Real clients. Real results. A look at the brands and people we've built content systems for." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:      #F5F0E8;
+      --surface: #EDE8DF;
+      --card:    #E4DDD2;
+      --film:    #1B3A4B;
+      --muted:   #6B5D4F;
+      --subtle:  #3A3832;
+      --amber:   #C4724A;
+      --amber-l: #D4855C;
+      --amber-d: #A85A36;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #F5F0E8; color: #1B3A4B; font-family: 'DM Mono', monospace; line-height: 1.6; overflow-x: hidden; }
+
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9998;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.022;
+    }
+
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: 1.05; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 32px 64px;
+      transition: padding 0.4s, background 0.4s;
+    }
+    nav.scrolled { padding: 20px 64px; background: rgba(245,240,232,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(27,58,75,0.05); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 500; letter-spacing: 0.1em; color: #1B3A4B; text-decoration: none; }
+    .nav-center { display: flex; gap: 40px; align-items: center; position: absolute; left: 50%; transform: translateX(-50%); }
+    .nav-center a { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.25s; }
+    .nav-center a:hover, .nav-center a.active { color: #1B3A4B; }
+    .nav-right { display: flex; align-items: center; }
+    .nav-book { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--amber) !important; border: 1px solid rgba(200,148,63,0.5); padding: 10px 24px; text-decoration: none; transition: background 0.25s, border-color 0.25s, color 0.25s !important; }
+    .nav-book:hover { background: var(--amber); border-color: var(--amber); color: var(--bg) !important; }
+
+    /* HERO */
+    #hero {
+      min-height: 60vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 160px 64px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 50% 60% at 30% 60%, rgba(200,148,63,0.05) 0%, transparent 65%), #F5F0E8; }
+    .hero-lines { position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(27,58,75,0.015) 60px, rgba(27,58,75,0.015) 61px); }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-eyebrow { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--amber); margin-bottom: 28px; display: block; opacity: 0; animation: riseIn 0.9s 0.2s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .hero-h1 { font-size: clamp(56px, 8vw, 110px); font-weight: 300; color: #1B3A4B; margin-bottom: 24px; opacity: 0; animation: riseIn 1s 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
+    .hero-h1 em { font-style: italic; color: var(--amber); }
+    .hero-sub { font-size: 14px; color: var(--muted); max-width: 520px; line-height: 2; opacity: 0; animation: riseIn 0.9s 0.6s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: rgba(27,58,75,0.05); margin: 0 64px; }
+
+    /* CASES */
+    #cases { padding: 80px 64px 120px; }
+
+    .cs-card {
+      display: grid; grid-template-columns: 1fr 2fr; gap: 0;
+      background: var(--surface);
+      border: 1px solid rgba(27,58,75,0.06);
+      text-decoration: none;
+      transition: background 0.3s;
+      margin-bottom: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cs-card:hover { background: #E4DDD2; }
+    .cs-card-left { padding: 56px 52px; border-right: 1px solid rgba(27,58,75,0.06); display: flex; flex-direction: column; justify-content: space-between; }
+    .cs-tag { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); display: block; margin-bottom: 20px; }
+    .cs-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 400; color: #1B3A4B; margin-bottom: 12px; line-height: 1.1; }
+    .cs-card-left p { font-size: 12px; color: var(--muted); line-height: 1.9; margin-bottom: 32px; }
+    .cs-metrics { display: flex; flex-direction: column; gap: 14px; }
+    .cs-metric { display: flex; align-items: center; gap: 14px; }
+    .cs-metric-n { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 300; color: var(--amber); min-width: 64px; }
+    .cs-metric-l { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+    .cs-card-right { padding: 56px 52px; display: flex; flex-direction: column; justify-content: space-between; }
+    .cs-card-right p { font-size: 13px; color: var(--muted); line-height: 2.1; margin-bottom: 32px; }
+    .cs-card-right p strong { color: #1B3A4B; font-weight: 400; }
+    .cs-cta { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); display: inline-flex; align-items: center; gap: 10px; transition: gap 0.2s; }
+    .cs-card:hover .cs-cta { gap: 16px; }
+    .cs-num { position: absolute; top: 40px; right: 52px; font-family: 'Cormorant Garamond', serif; font-size: 120px; font-weight: 300; color: rgba(200,148,63,0.04); line-height: 1; pointer-events: none; }
+
+    /* CTA */
+    #cta { padding: 100px 64px; text-align: center; background: #EDE8DF; }
+    #cta h2 { font-size: clamp(40px, 6vw, 80px); margin-bottom: 20px; }
+    #cta h2 em { font-style: italic; color: var(--amber); }
+    #cta p { font-size: 14px; color: var(--muted); max-width: 400px; margin: 0 auto 40px; line-height: 2; }
+    .btn-amber { display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; background: var(--amber); color: var(--bg); padding: 16px 40px; text-decoration: none; transition: background 0.25s, transform 0.2s; }
+    .btn-amber:hover { background: var(--amber-l); transform: translateY(-2px); }
+
+    /* FOOTER */
+    footer { background: #1B3A4B; padding: 40px 64px; border-top: 1px solid rgba(27,58,75,0.05); display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; letter-spacing: 0.1em; }
+    footer p { font-size: 11px; color: var(--subtle); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--amber); }
+
+    @keyframes riseIn { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      nav.scrolled { padding: 16px 24px; }
+      .nav-center { display: none; }
+      #hero { padding: 130px 24px 60px; }
+      .divider { margin: 0 24px; }
+      #cases { padding: 60px 24px 80px; }
+      .cs-card { grid-template-columns: 1fr; }
+      .cs-card-left { border-right: none; border-bottom: 1px solid rgba(27,58,75,0.06); padding: 44px 32px; }
+      .cs-card-right { padding: 36px 32px; }
+      .cs-num { display: none; }
+      #cta { padding: 80px 24px; }
+      footer { flex-direction: column; gap: 20px; text-align: center; padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a class="nav-logo" href="index.html">drvizuals</a>
+    <div class="nav-center">
+      <a href="index.html#content-engine">Content Engine</a>
+      <a href="case-studies.html" class="active">Case Studies</a>
+      <a href="index.html#about">About</a>
+      <a href="mailto:dani@drvizualss.com">Contact</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://calendly.com/danirua/content-strategy" class="nav-book" target="_blank">Book a Call</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">The Work</span>
+      <h1 class="hero-h1">Real clients.<br />Real <em>results.</em></h1>
+      <p class="hero-sub">A look at the brands and people we've built content systems for — and what happened when distribution finally matched their expertise.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CASES -->
+  <section id="cases">
+
+    <!-- South Florals -->
+    <a href="south-florals.html" class="cs-card reveal">
+      <div class="cs-num">01</div>
+      <div class="cs-card-left">
+        <div>
+          <span class="cs-tag">Luxury Florals — South Florida</span>
+          <h3>South Florals & NuFlorist</h3>
+          <p>A multimillion dollar luxury floral brand. Two brands, one ecosystem, one team behind it all.</p>
+        </div>
+        <div class="cs-metrics">
+          <div class="cs-metric"><span class="cs-metric-n">100+</span><span class="cs-metric-l">Pieces in 3 months</span></div>
+          <div class="cs-metric"><span class="cs-metric-n">38</span><span class="cs-metric-l">Videos — month one</span></div>
+          <div class="cs-metric"><span class="cs-metric-n">4K</span><span class="cs-metric-l">Organic views</span></div>
+        </div>
+      </div>
+      <div class="cs-card-right">
+        <p>Monthly content production for South Florals working alongside their marketing team, the full Content Engine for NuFlorist, and a product launch with <strong>Danny Sanchez as the face of the technology.</strong> One ecosystem, three layers of content, built to compound.</p>
+        <span class="cs-cta">View Case Study →</span>
+      </div>
+    </a>
+
+    <!-- Coach Carlos -->
+    <a href="coach-carlos.html" class="cs-card reveal">
+      <div class="cs-num">02</div>
+      <div class="cs-card-left">
+        <div>
+          <span class="cs-tag">Real Estate Coaching — Miami</span>
+          <h3>Coach Carlos Herrán</h3>
+          <p>Spanish-speaking real estate coach building an audience in the US market.</p>
+        </div>
+        <div class="cs-metrics">
+          <div class="cs-metric"><span class="cs-metric-n">200+</span><span class="cs-metric-l">Pieces produced</span></div>
+          <div class="cs-metric"><span class="cs-metric-n">1,974</span><span class="cs-metric-l">Likes — top post</span></div>
+          <div class="cs-metric"><span class="cs-metric-n">1,086</span><span class="cs-metric-l">Saves</span></div>
+        </div>
+      </div>
+      <div class="cs-card-right">
+        <p>Six months. 200+ pieces. Brand line structure built from the ground up — content pillars, messaging, scripting. <strong>Several videos went viral</strong>, with the top post hitting nearly 2,000 likes and over 1,000 saves. The save count tells the real story — people trusted this content enough to keep it.</p>
+        <span class="cs-cta">View Case Study →</span>
+      </div>
+    </a>
+
+    <!-- DAV Coach -->
+    <a href="dav-coach.html" class="cs-card reveal">
+      <div class="cs-num">03</div>
+      <div class="cs-card-left">
+        <div>
+          <span class="cs-tag">Veterans Coaching — USA</span>
+          <h3>The DAV Coach</h3>
+          <p>Helping US veterans reach 99% of their VA disability claims.</p>
+        </div>
+        <div class="cs-metrics">
+          <div class="cs-metric"><span class="cs-metric-n">24</span><span class="cs-metric-l">Videos produced</span></div>
+          <div class="cs-metric"><span class="cs-metric-n">2</span><span class="cs-metric-l">Went viral</span></div>
+          <div class="cs-metric"><span class="cs-metric-n">$100K</span><span class="cs-metric-l">Monthly revenue today</span></div>
+        </div>
+      </div>
+      <div class="cs-card-right">
+        <p>Gage had the expertise for years. <strong>Distribution was the missing piece.</strong> We produced 24 videos. Two went viral. Those two are still generating leads today — compounding every week, reaching new veterans who need exactly what Gage offers. He's now at $100K/month and growing.</p>
+        <span class="cs-cta">View Case Study →</span>
+      </div>
+    </a>
+
+    <!-- Mike Van Houdt -->
+    <a href="mike-van-houdt.html" class="cs-card reveal">
+      <div class="cs-num">04</div>
+      <div class="cs-card-left">
+        <div>
+          <span class="cs-tag">Lifestyle & Real Estate — Canada / Medellín</span>
+          <h3>Mike Van Houdt</h3>
+          <p>Real estate investor and car YouTuber living between Canada and Medellín.</p>
+        </div>
+        <div class="cs-metrics">
+          <div class="cs-metric"><span class="cs-metric-n">4</span><span class="cs-metric-l">Content worlds</span></div>
+          <div class="cs-metric"><span class="cs-metric-n">2</span><span class="cs-metric-l">Countries filmed</span></div>
+          <div class="cs-metric"><span class="cs-metric-n">↑</span><span class="cs-metric-l">Credibility & following</span></div>
+        </div>
+      </div>
+      <div class="cs-card-right">
+        <p>We didn't just film Mike — <strong>we travelled with him.</strong> Real estate bus tours through Medellín, car shoots, lifestyle moments, and brand content. The kind of content that only happens when the filmmaker is actually inside the world being documented. Viral social videos, credibility content, and brand deals — all from one ongoing collaboration.</p>
+        <span class="cs-cta">View Case Study →</span>
+      </div>
+    </a>
+
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="reveal">
+      <h2>Ready to be<br />the next <em>case study?</em></h2>
+      <p>One session a month. 45+ pieces delivered. Content that compounds and never stops working.</p>
+      <a href="https://calendly.com/danirua/content-strategy" class="btn-amber" target="_blank">Book a Strategy Call</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">drvizuals</span>
+    <p>© 2026 drvizuals. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/drvizuals" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@worldwideagenc" target="_blank">TikTok</a>
+      <a href="mailto:dani@drvizualss.com">Email</a>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 80); });
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

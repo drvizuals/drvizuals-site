@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The DAV Coach — Case Study | drvizuals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root{--void:#F5F0E8;--grain:#E4DDD2;--film:#1B3A4B;--muted:#6B5D4F;--amber:#C4724A;--amber-d:#A85A36}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+    body{background:#F5F0E8;color:#1B3A4B;font-family:"DM Mono",monospace;font-size:15px;line-height:1.6;overflow-x:hidden}
+    h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:300;line-height:1.08}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:24px 48px;background:linear-gradient(to bottom,rgba(245,240,232,.95) 0%,transparent 100%);transition:background .4s}
+    nav.scrolled{background:rgba(245,240,232,.96);backdrop-filter:blur(16px)}
+    .nav-logo{font-family:"Cormorant Garamond",serif;font-size:22px;font-weight:500;letter-spacing:.08em;color:#1B3A4B;text-decoration:none}
+    .nav-back{font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#6B5D4F;text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s}
+    .nav-back:hover{color:var(--amber)}.nav-back::before{content:"←"}
+    #hero{min-height:90vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 48px 80px;position:relative;overflow:hidden}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 60% 30%,rgba(196,114,74,.06) 0%,transparent 70%),#F5F0E8}
+    .hero-content{position:relative;z-index:2}
+    .hero-meta{display:flex;gap:48px;flex-wrap:wrap;margin-bottom:36px;opacity:0;animation:fadeUp .8s .2s forwards}
+    .hero-meta-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+    .hero-meta-value{font-size:12px;color:var(--muted)}
+    .hero-title{font-size:clamp(48px,7.5vw,108px);font-weight:300;color:#1B3A4B;margin-bottom:32px;opacity:0;animation:fadeUp .9s .4s forwards}
+    .hero-title em{font-style:italic;color:var(--amber)}
+    .hero-sub{font-size:14px;color:var(--muted);max-width:560px;line-height:1.9;opacity:0;animation:fadeUp .9s .6s forwards}
+    .ticker-strip{background:#E4DDD2;padding:16px 0;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(196,114,74,.12);border-bottom:1px solid rgba(196,114,74,.12)}
+    .ticker-inner{display:inline-block;animation:ticker 25s linear infinite}
+    .ticker-inner span{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:0 40px}
+    .ticker-inner span::before{content:"◆";margin-right:40px;color:var(--amber);opacity:.5}
+    .rule{height:1px;background:rgba(27,58,75,.12);margin:0 48px}
+    .section-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin-bottom:20px;display:flex;align-items:center;gap:16px}
+    .section-label::before{content:"";width:32px;height:1px;background:var(--amber)}
+    #overview{padding:100px 48px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+    #overview h2{font-size:clamp(36px,4vw,52px);margin-bottom:28px}
+    #overview p{font-size:14px;color:var(--muted);line-height:2;margin-bottom:20px}
+    #overview p strong{color:#1B3A4B;font-weight:400}
+    .overview-details{display:flex;flex-direction:column;gap:1px;background:rgba(27,58,75,.07)}
+    .detail-row{background:#EDE8DF;padding:28px 32px;display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+    .detail-row:hover{background:#E4DDD2}
+    .detail-key{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+    .detail-val{font-size:13px;color:#1B3A4B;text-align:right;max-width:55%}
+    #work{padding:100px 48px;background:#1B3A4B}
+    #work h2{font-size:clamp(36px,4vw,52px);margin-bottom:60px;color:#F5F0E8}
+    .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(245,240,232,.1)}
+    .work-card{background:#F5F0E8;padding:48px 40px;transition:background .3s}
+    .work-card:hover{background:#E4DDD2}
+    .work-icon{font-family:"Cormorant Garamond",serif;font-size:56px;font-weight:300;color:rgba(196,114,74,.3);margin-bottom:24px;display:block}
+    .work-card h3{font-family:"Cormorant Garamond",serif;font-size:26px;font-weight:400;margin-bottom:16px;color:#1B3A4B}
+    .work-card p{font-size:12px;color:var(--muted);line-height:2}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(27,58,75,.1)}
+    .stat-cell{background:#EDE8DF;padding:48px 36px;text-align:center}
+    .stat-number{font-family:"Cormorant Garamond",serif;font-size:80px;font-weight:300;color:var(--amber);line-height:1;margin-bottom:12px}
+    .stat-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    #media{padding:100px 48px;background:#1B3A4B}
+    #media h2{font-size:clamp(36px,4vw,52px);margin-bottom:56px;color:#F5F0E8}
+    .brand-label{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:28px}
+    #cta{padding:120px 48px;text-align:center;position:relative;overflow:hidden}
+    #cta h2{font-size:clamp(40px,6vw,80px);margin-bottom:20px}
+    #cta h2 em{font-style:italic;color:var(--amber)}
+    #cta p{font-size:14px;color:var(--muted);max-width:440px;margin:0 auto 40px;line-height:1.9}
+    .btn-primary{display:inline-block;background:var(--amber);color:#F5F0E8;font-family:"DM Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;padding:16px 36px;transition:background .2s,transform .2s}
+    .btn-primary:hover{background:var(--amber-d);transform:translateY(-1px)}
+    footer{background:#1B3A4B;padding:48px;display:flex;align-items:center;justify-content:space-between}
+    .footer-logo{font-family:"Cormorant Garamond",serif;font-size:20px;font-weight:500;letter-spacing:.06em;color:#F5F0E8}
+    .footer-meta{font-size:11px;color:rgba(245,240,232,.5);text-align:center}
+    .footer-links{display:flex;gap:28px}
+    .footer-links a{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,240,232,.5);text-decoration:none;transition:color .2s}
+    .footer-links a:hover{color:var(--amber)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+    @media(max-width:900px){nav{padding:20px 24px}.rule{margin:0 24px}#hero{padding:100px 24px 64px}#overview{grid-template-columns:1fr;gap:48px;padding:80px 24px}#work,#media,#cta{padding:80px 24px}.work-grid{grid-template-columns:1fr}.stats-row{grid-template-columns:1fr 1fr}.photo-grid{grid-template-columns:1fr!important}.photo-grid>div:first-child{height:380px!important}.photo-grid>div:last-child{padding:52px 28px!important}.reels-grid{grid-template-columns:1fr!important}footer{flex-direction:column;gap:24px;text-align:center;padding:40px 24px}}
+</style>
+</head>
+<body>
+  <nav id="nav">
+    <a class="nav-logo" href="index.html">drvizuals</a>
+    <a class="nav-back" href="case-studies.html">All Case Studies</a>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-meta">
+        <div><div class="hero-meta-label">Client</div><div class="hero-meta-value">Gage — The DAV Coach</div></div>
+        <div><div class="hero-meta-label">Niche</div><div class="hero-meta-value">Veterans Benefits Coaching</div></div>
+        <div><div class="hero-meta-label">Audience</div><div class="hero-meta-value">US Military Veterans</div></div>
+        <div><div class="hero-meta-label">Result</div><div class="hero-meta-value">$100K/month today</div></div>
+      </div>
+      <h1 class="hero-title">The DAV<br /><em>Coach.</em></h1>
+      <p class="hero-sub">24 videos. 2 went viral. Still generating leads today. Gage helps veterans reach 99% of their VA disability claims — distribution turned his expertise into $100K/month.</p>
+    </div>
+  </section>
+
+  <div class="ticker-strip" aria-hidden="true">
+    <div class="ticker-inner">
+      <span>Veterans Coaching</span><span>24 Videos</span><span>2 Went Viral</span><span>Leads Today</span><span>$100K Month</span><span>Distribution</span><span>VA Claims</span><span>Compounding Content</span>
+      <span>Veterans Coaching</span><span>24 Videos</span><span>2 Went Viral</span><span>Leads Today</span><span>$100K Month</span><span>Distribution</span><span>VA Claims</span><span>Compounding Content</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <section style="padding:0;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;" class="photo-grid">
+      <div style="height:620px;overflow:hidden;position:relative;">
+        <img src="gage.jpg" alt="Gage — The DAV Coach" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" />
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(27,58,75,.7) 0%,transparent 100%);padding:40px 36px 28px;">
+          <p style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#F5F0E8;">Gage — @thedavcoach</p>
+        </div>
+      </div>
+      <div style="padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:#EDE8DF;" class="reveal">
+        <p class="section-label" style="justify-content:flex-start">The Person</p>
+        <h2 style="font-size:clamp(34px,4vw,52px);margin-bottom:28px;">From veteran<br />to <em style="font-style:italic;color:var(--amber)">top performer.</em></h2>
+        <p style="font-size:14px;color:var(--muted);line-height:2;margin-bottom:16px;">Gage had been doing VA claims coaching for years. He knew the system better than almost anyone. What he was missing was distribution — a way to get in front of the veterans who needed him.</p>
+        <p style="font-size:14px;color:var(--muted);line-height:2;">We built the content. Distribution did the rest. He went from being known in his circle to $100K/month. Same knowledge. Same skill set. Just finally in front of the right people.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section id="overview">
+    <div class="reveal">
+      <p class="section-label">The Brief</p>
+      <h2>A short project.<br />A lasting<br /><em style="font-style:italic;color:var(--amber)">impact.</em></h2>
+      <p>Gage came to us with a mission — help veterans navigate the VA system and reach 99% of their disability claims. He knew he had something valuable to say. He just needed the right content to say it.</p>
+      <p>24 videos. <strong>2 went viral.</strong> And those 2 alone are still generating leads today. Gage now brings in $100K/month. Distribution turned his expertise into income.</p>
+    </div>
+    <div class="overview-details reveal d2">
+      <div class="detail-row"><span class="detail-key">Client</span><span class="detail-val">Gage — @thedavcoach</span></div>
+      <div class="detail-row"><span class="detail-key">Niche</span><span class="detail-val">VA disability claims coaching</span></div>
+      <div class="detail-row"><span class="detail-key">Audience</span><span class="detail-val">US Military Veterans</span></div>
+      <div class="detail-row"><span class="detail-key">Videos Produced</span><span class="detail-val">24 videos</span></div>
+      <div class="detail-row"><span class="detail-key">Outcome</span><span class="detail-val">2 viral · $100K/month · Leads still coming</span></div>
+      <div class="detail-row"><span class="detail-key">Produced by</span><span class="detail-val">drvizuals × World Wide Agency</span></div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section id="work">
+    <div class="reveal" style="margin-bottom:60px;">
+      <p class="section-label" style="color:rgba(245,240,232,.6)">What We Built</p>
+      <h2>24 videos in.<br />2 changed everything.</h2>
+    </div>
+    <div class="work-grid">
+      <div class="work-card reveal">
+        <span class="work-icon">01</span>
+        <h3>Built Around His Expertise</h3>
+        <p>Gage had been doing VA claims for years. We took that knowledge and built 24 videos around it — scripted, filmed, edited, and formatted for the people who needed it most. Veterans who deserved what he had to offer.</p>
+      </div>
+      <div class="work-card reveal d1">
+        <span class="work-icon">02</span>
+        <h3>Distribution Did the Rest</h3>
+        <p>2 of those 24 videos caught. And when they did, they didn't stop. They're still reaching new veterans today — still bringing in leads, still building Gage's business. He's now at $100K/month.</p>
+      </div>
+      <div class="work-card reveal d2">
+        <span class="work-icon">03</span>
+        <h3>Content That Never Stops</h3>
+        <p>Organic content compounds. Every share, every save, every new viewer is another veteran finding Gage. That's what great content does when it's built around genuine value. It doesn't expire.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule" style="margin:0;opacity:.2"></div>
+
+  <section style="padding:100px 48px;">
+    <p class="section-label reveal">The Numbers</p>
+    <div class="stats-row">
+      <div class="stat-cell reveal"><div class="stat-number">24</div><div class="stat-label">Videos produced</div></div>
+      <div class="stat-cell reveal d1"><div class="stat-number">2</div><div class="stat-label">Went viral — still generating leads</div></div>
+      <div class="stat-cell reveal d2"><div class="stat-number">∞</div><div class="stat-label">Organic reach still compounding</div></div>
+      <div class="stat-cell reveal d3"><div class="stat-number">$100K</div><div class="stat-label">Monthly revenue Gage generates today</div></div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section id="media">
+    <div class="reveal" style="margin-bottom:56px;">
+      <p class="section-label" style="color:rgba(245,240,232,.6)">The Content</p>
+      <h2>See the work.</h2>
+    </div>
+    <div class="brand-label reveal">@thedavcoach</div>
+    <div style="display:grid;grid-template-columns:repeat(3,340px);gap:24px;justify-content:start;" class="reels-grid reveal">
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DSqP0jXkgEC/" data-instgrm-version="14" style="background:#EDE8DF;border:1px solid rgba(196,114,74,.2);border-radius:0;max-width:340px;width:100%;margin:0;"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTg08anEW3s/" data-instgrm-version="14" style="background:#EDE8DF;border:1px solid rgba(196,114,74,.2);border-radius:0;max-width:340px;width:100%;margin:0;"></blockquote>
+      <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DTEsH6ujmRq/" data-instgrm-version="14" style="background:#EDE8DF;border:1px solid rgba(196,114,74,.2);border-radius:0;max-width:340px;width:100%;margin:0;"></blockquote>
+    </div>
+    <script async src="//www.instagram.com/embed.js"></script>
+  </section>
+
+  <div class="rule" style="margin:0;opacity:.2"></div>
+
+  <section id="cta">
+    <div class="reveal">
+      <h2>Distribution turned<br />his expertise into<br /><em>$100K/month.</em></h2>
+      <p>Gage had the knowledge for years. Distribution is what made it pay. Let's build yours.</p>
+      <a href="https://calendly.com/danirua/content-strategy" target="_blank" class="btn-primary">Book a Strategy Call</a>
+    </div>
+  </section>
+  
+  <footer>
+    <span class="footer-logo">drvizuals</span>
+    <div class="footer-meta"><div>© 2026 drvizuals. All rights reserved.</div><div style="margin-top:4px;font-size:10px;">World Wide Agency</div></div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/drvizuals" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@donewithcontent_" target="_blank">TikTok</a>
+      <a href="mailto:dani@drvizualss.com">Email</a>
+    </div>
+  </footer>
+  <script>
+    const nav=document.getElementById('nav');
+    window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>60)});
+    const reveals=document.querySelectorAll('.reveal');
+    const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(el=>observer.observe(el));
+  </script>
+</body></html>

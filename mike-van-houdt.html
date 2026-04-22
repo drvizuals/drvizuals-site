@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mike Van Houdt — Case Study | drvizuals</title>
+  <meta name="description" content="Real estate investor, car YouTuber, Canada to Medellín. We travelled with Mike and built content across lifestyle, luxury real estate, cars, and brand deals." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --void:    #F5F0E8;
+      --shadow:  #1B3A4B;
+      --grain:   #E4DDD2;
+      --film:    #1B3A4B;
+      --muted:   #6B5D4F;
+      --amber:   #C4724A;
+      --amber-d: #A85A36;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream, #F5F0E8);
+      color: #1B3A4B;
+      font-family: 'DM Mono', monospace;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.015; mix-blend-mode: multiply;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: 1.08; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 48px;
+      background: linear-gradient(to bottom, rgba(245,240,232,0.95) 0%, transparent 100%);
+      transition: background 0.4s;
+    }
+    nav.scrolled { background: rgba(245,240,232,0.96); backdrop-filter: blur(16px); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 500; letter-spacing: 0.08em; color: #2C4A5A; text-decoration: none; }
+    .nav-back { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A6E60; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--amber); }
+    .nav-back::before { content: '←'; }
+
+    /* HERO */
+    #hero {
+      min-height: 90vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 120px 48px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 60% 30%, rgba(200,148,63,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 40% at 10% 80%, rgba(200,148,63,0.04) 0%, transparent 60%),
+        var(--void);
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.006) 3px, rgba(255,255,255,0.006) 4px);
+    }
+    .hero-content { position: relative; z-index: 2; }
+    .hero-meta { display: flex; gap: 48px; flex-wrap: wrap; margin-bottom: 36px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+    .hero-meta-label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--amber); margin-bottom: 6px; }
+    .hero-meta-value { font-size: 12px; color: var(--muted); }
+    .hero-title { font-size: clamp(48px, 7.5vw, 108px); font-weight: 300; color: #1B3A4B; margin-bottom: 32px; opacity: 0; animation: fadeUp 0.9s 0.4s forwards; }
+    .hero-title em { font-style: italic; color: var(--amber); }
+    .hero-sub { font-size: 14px; color: var(--muted); max-width: 560px; line-height: 1.9; opacity: 0; animation: fadeUp 0.9s 0.6s forwards; }
+
+    /* WORLD TICKER */
+    .world-strip { background: #E4DDD2; padding: 16px 0; overflow: hidden; white-space: nowrap; border-top: 1px solid rgba(200,148,63,0.12); border-bottom: 1px solid rgba(200,148,63,0.12); }
+    .world-inner { display: inline-block; animation: ticker 25s linear infinite; }
+    .world-inner span { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); padding: 0 40px; }
+    .world-inner span::before { content: '◆'; margin-right: 40px; color: var(--amber); opacity: 0.5; }
+
+    .rule { height: 1px; background: rgba(27,58,75,0.12); margin: 0 48px; }
+
+    .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--amber); margin-bottom: 20px; display: flex; align-items: center; gap: 16px; }
+    .section-label::before { content: ''; width: 32px; height: 1px; background: var(--amber); }
+
+    /* OVERVIEW */
+    #overview { padding: 100px 48px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    #overview h2 { font-size: clamp(36px, 4vw, 52px); margin-bottom: 28px; }
+    #overview p { font-size: 14px; color: var(--muted); line-height: 2; margin-bottom: 20px; }
+    #overview p strong { color: #1B3A4B; font-weight: 400; }
+
+    .overview-details { display: flex; flex-direction: column; gap: 1px; background: rgba(27,58,75,0.1); }
+    .detail-row { background: #EDE8DF; padding: 28px 32px; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
+    .detail-row:hover { background: #E4DDD2; }
+    .detail-key { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+    .detail-val { font-size: 13px; color: #1B3A4B; text-align: right; max-width: 55%; }
+
+    /* WHAT WE CREATED */
+    #work { padding: 100px 48px; background: #1B3A4B; }
+    #work h2 { font-size: clamp(36px, 4vw, 52px); margin-bottom: 60px; }
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(27,58,75,0.07); }
+    .work-card { background: var(--cream, #F5F0E8); padding: 52px 44px; transition: background 0.3s; }
+    .work-card:hover { background: #E4DDD2; }
+    .work-icon { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 300; color: rgba(200,148,63,0.2); margin-bottom: 24px; display: block; }
+    .work-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400; margin-bottom: 16px; }
+    .work-card p { font-size: 12px; color: var(--muted); line-height: 2; }
+
+    /* ON LOCATION */
+    #location { padding: 100px 48px; }
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .location-text h2 { font-size: clamp(36px, 4.5vw, 60px); margin-bottom: 28px; }
+    .location-text p { font-size: 14px; color: var(--muted); line-height: 2; margin-bottom: 20px; }
+    .location-text p strong { color: #1B3A4B; font-weight: 400; }
+
+    .location-tags { display: flex; flex-direction: column; gap: 1px; background: rgba(27,58,75,0.1); }
+    .location-tag { background: #EDE8DF; padding: 28px 36px; display: flex; align-items: center; gap: 20px; transition: background 0.3s; }
+    .location-tag:hover { background: #E4DDD2; }
+    .location-tag-dot { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; flex-shrink: 0; }
+    .location-tag-text h3 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; margin-bottom: 4px; color: #1B3A4B; }
+    .location-tag-text p { font-size: 11px; color: var(--muted); }
+
+    /* MEDIA */
+    #media { padding: 100px 48px; background: #1B3A4B; }
+    #media h2 { font-size: clamp(36px, 4vw, 52px); margin-bottom: 56px; }
+    .brand-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber); margin-bottom: 28px; }
+
+    /* CTA */
+    #cta { padding: 120px 48px; text-align: center; position: relative; overflow: hidden; }
+    #cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 50% 50%, rgba(196,114,74,0.08) 0%, transparent 70%); }
+    #cta h2 { font-size: clamp(40px, 6vw, 80px); margin-bottom: 20px; position: relative; }
+    #cta h2 em { font-style: italic; color: var(--amber); }
+    #cta p { font-size: 14px; color: var(--muted); max-width: 440px; margin: 0 auto 40px; line-height: 1.9; position: relative; }
+    .btn-primary { display: inline-block; background: var(--amber); color: var(--void); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 16px 36px; transition: background 0.2s, transform 0.2s; position: relative; }
+    .btn-primary:hover { background: var(--amber-d); transform: translateY(-1px); }
+
+    footer { background: #1B3A4B; padding: 48px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(27,58,75,0.06); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 500; letter-spacing: 0.06em; color: #F5F0E8; }
+    .footer-meta { font-size: 11px; color: rgba(245,240,232,0.5); text-align: center; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,232,0.5); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--amber); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .rule { margin: 0 24px; }
+      #hero { padding: 100px 24px 64px; }
+      #overview { grid-template-columns: 1fr; gap: 48px; padding: 80px 24px; }
+      #work { padding: 80px 24px; }
+      .work-grid { grid-template-columns: 1fr; }
+      #location { padding: 80px 24px; }
+      .location-grid { grid-template-columns: 1fr; }
+      #media { padding: 80px 24px; }
+      .reels-grid { grid-template-columns: 1fr !important; }
+      #cta { padding: 80px 24px; }
+      footer { flex-direction: column; gap: 24px; text-align: center; padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <a class="nav-logo" href="index.html">drvizuals</a>
+    <a class="nav-back" href="index.html">Back to home</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-meta">
+        <div><div class="hero-meta-label">Client</div><div class="hero-meta-value">Mike Van Houdt</div></div>
+        <div><div class="hero-meta-label">World</div><div class="hero-meta-value">Real Estate + Cars + Lifestyle</div></div>
+        <div><div class="hero-meta-label">Between</div><div class="hero-meta-value">Canada & Medellín, Colombia</div></div>
+        <div><div class="hero-meta-label">Format</div><div class="hero-meta-value">On location — travelling together</div></div>
+      </div>
+      <h1 class="hero-title">Mike Van<br /><em>Houdt.</em></h1>
+      <p class="hero-sub">Real estate investor. Car YouTuber. Living between Canada and Medellín. We travelled next to him — capturing luxury real estate, cars, lifestyle, and brand content that built his credibility and grew his following.</p>
+    </div>
+  </section>
+
+  <!-- WORLD TICKER -->
+  <div class="world-strip" aria-hidden="true">
+    <div class="world-inner">
+      <span>Canada</span><span>Medellín</span><span>Real Estate</span><span>Cars</span><span>Lifestyle</span><span>Brand Content</span><span>On Location</span><span>YouTube</span>
+      <span>Canada</span><span>Medellín</span><span>Real Estate</span><span>Cars</span><span>Lifestyle</span><span>Brand Content</span><span>On Location</span><span>YouTube</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+
+  <!-- MIKE PHOTO -->
+  <section style="padding:0; background:#1B3A4B;">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0;" class="mike-photo-grid">
+      <div style="height:640px; overflow:hidden; position:relative;">
+        <img src="mike.jpg" alt="Mike Van Houdt" style="width:100%; height:100%; object-fit:cover; object-position:center 60%;" />
+        <div style="position:absolute; bottom:0; left:0; right:0; background:linear-gradient(to top, rgba(8,8,8,0.8) 0%, transparent 100%); padding:40px 36px 28px;">
+          <p style="font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:#1B3A4B;">Mike Van Houdt — Real Estate Investor & Car YouTuber</p>
+        </div>
+      </div>
+      <div style="padding:80px 64px; display:flex; flex-direction:column; justify-content:center; background:#EDE8DF;">
+        <p class="section-label" style="justify-content:flex-start; margin-bottom:24px;">The person</p>
+        <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(36px,4.5vw,56px); font-weight:300; margin-bottom:28px;">Living between<br />two worlds —<br /><em style="font-style:italic;color:var(--amber)">we captured both.</em></h2>
+        <p style="font-size:14px; color:var(--muted); line-height:2; margin-bottom:20px;">Mike splits his life between Canada and Medellín. Real estate on one side, cars and lifestyle on the other. Most people have one world worth documenting. Mike has four.</p>
+        <p style="font-size:14px; color:var(--muted); line-height:2;">We travelled with him — side by side — and built content across every world he lives in.</p>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @media (max-width: 900px) {
+      .mike-photo-grid { grid-template-columns: 1fr !important; }
+      .mike-photo-grid > div:first-child { height: 400px !important; }
+      .mike-photo-grid > div:last-child { padding: 52px 28px !important; }
+    }
+  </style>
+
+  <div class="rule"></div>
+
+  <!-- OVERVIEW -->
+  <section id="overview">
+    <div class="reveal">
+      <p class="section-label">The brief</p>
+      <h2>A life worth<br />watching — we<br /><em style="font-style:italic;color:var(--amber)">captured it.</em></h2>
+      <p>Mike Van Houdt lives at the intersection of two worlds — the Canadian real estate market and the energy of Medellín, Colombia. He's a real estate investor with a YouTube following built around cars, lifestyle, and the kind of life most people only scroll past.</p>
+      <p>We didn't just film him. <strong>We travelled with him.</strong> Side by side — on bus tours through Medellín's luxury real estate, at car shoots, at brand events, in between. The content we created wasn't staged. It was real life, captured the right way.</p>
+      <p>The result: videos that went viral, a credibility boost that grew his following, and brand content that opened doors with sponsors.</p>
+    </div>
+    <div class="overview-details reveal reveal-delay-2">
+      <div class="detail-row"><span class="detail-key">Client</span><span class="detail-val">Mike Van Houdt</span></div>
+      <div class="detail-row"><span class="detail-key">World</span><span class="detail-val">Real estate, cars, lifestyle</span></div>
+      <div class="detail-row"><span class="detail-key">Based</span><span class="detail-val">Canada & Medellín, Colombia</span></div>
+      <div class="detail-row"><span class="detail-key">Format</span><span class="detail-val">On-location — travelled together</span></div>
+      <div class="detail-row"><span class="detail-key">Content</span><span class="detail-val">Lifestyle, real estate, cars, brands</span></div>
+      <div class="detail-row"><span class="detail-key">Produced by</span><span class="detail-val">drvizuals × World Wide Agency</span></div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- WHAT WE CREATED -->
+  <section id="work">
+    <div class="reveal">
+      <p class="section-label">What we created</p>
+      <h2>Every world<br />he lives in — covered.</h2>
+    </div>
+    <div class="work-grid">
+      <div class="work-card reveal">
+        <span class="work-icon">01</span>
+        <h3>Real Estate Bus Tour — Medellín</h3>
+        <p>We took Mike through Medellín's luxury real estate market — filming a full bus tour that showed the properties, the market, and the lifestyle. Content that positioned him as a serious investor in one of South America's fastest growing cities.</p>
+      </div>
+      <div class="work-card reveal reveal-delay-1">
+        <span class="work-icon">02</span>
+        <h3>Viral Social Media Content</h3>
+        <p>Videos built for reach. Scripted around his world, filmed on location, edited to perform. Content that went viral and brought in a wave of new followers who connected with Mike's story and lifestyle.</p>
+      </div>
+      <div class="work-card reveal reveal-delay-2">
+        <span class="work-icon">03</span>
+        <h3>Credibility & Growth Content</h3>
+        <p>Not every piece needs to go viral. Some content is built to make the right people take you seriously. We created videos that elevated Mike's positioning — growing his following and deepening trust with his existing audience.</p>
+      </div>
+      <div class="work-card reveal reveal-delay-3">
+        <span class="work-icon">04</span>
+        <h3>Brand & Sponsor Content</h3>
+        <p>When brands want to reach Mike's audience, they need content that feels native — not like an ad. We produced brand content that fit naturally into his world while delivering for the sponsors behind it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- ON LOCATION -->
+  <section id="location">
+    <div class="location-grid">
+      <div class="location-text reveal">
+        <p class="section-label">On location</p>
+        <h2>We didn't<br />film him.<br />We <em style="font-style:italic;color:var(--amber)">travelled</em><br />with him.</h2>
+        <p>This isn't studio content. There's no set, no lighting rig, no scripted intro. Mike's world moves — between cities, between assets, between industries — and we moved with it.</p>
+        <p>That's what makes the content work. <strong>It's real.</strong> The bus tour through Medellín real estate, the car shoots, the lifestyle moments — all of it captured as it happened, not recreated after the fact.</p>
+        <p>The best content about a person's life is made by someone who's actually in it.</p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="location-tags">
+          <div class="location-tag">
+            <div class="location-tag-dot"></div>
+            <div class="location-tag-text">
+              <h3>Medellín, Colombia</h3>
+              <p>Luxury real estate bus tours & lifestyle</p>
+            </div>
+          </div>
+          <div class="location-tag">
+            <div class="location-tag-dot"></div>
+            <div class="location-tag-text">
+              <h3>Canada</h3>
+              <p>Real estate market content & YouTube</p>
+            </div>
+          </div>
+          <div class="location-tag">
+            <div class="location-tag-dot"></div>
+            <div class="location-tag-text">
+              <h3>Car Shoots</h3>
+              <p>Automotive content for his YouTube audience</p>
+            </div>
+          </div>
+          <div class="location-tag">
+            <div class="location-tag-dot"></div>
+            <div class="location-tag-text">
+              <h3>Brand Activations</h3>
+              <p>Sponsor content built to feel native to his world</p>
+            </div>
+          </div>
+          <div class="location-tag">
+            <div class="location-tag-dot"></div>
+            <div class="location-tag-text">
+              <h3>Lifestyle</h3>
+              <p>The in-between moments that make a following loyal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- MEDIA -->
+  <section id="media">
+    <div class="reveal" style="margin-bottom: 56px;">
+      <p class="section-label">The content</p>
+      <h2>See the work.</h2>
+    </div>
+    <div class="brand-label reveal">@mikevanhoudt</div>
+    <div style="display: grid; grid-template-columns: repeat(4, 300px); gap: 20px; justify-content: start;" class="reels-grid reveal">
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/reel/DRpGHA9DVxI/"
+        data-instgrm-version="14"
+        style="background:#1B3A4B; border:1px solid rgba(200,148,63,0.15); border-radius:0; max-width:300px; width:100%; margin:0;">
+      </blockquote>
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/reel/DPyfNTija2e/"
+        data-instgrm-version="14"
+        style="background:#1B3A4B; border:1px solid rgba(200,148,63,0.15); border-radius:0; max-width:300px; width:100%; margin:0;">
+      </blockquote>
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/reel/DPv6bDMjYtr/"
+        data-instgrm-version="14"
+        style="background:#1B3A4B; border:1px solid rgba(200,148,63,0.15); border-radius:0; max-width:300px; width:100%; margin:0;">
+      </blockquote>
+      <blockquote class="instagram-media"
+        data-instgrm-permalink="https://www.instagram.com/reel/DTEsH6ujmRq/"
+        data-instgrm-version="14"
+        style="background:#1B3A4B; border:1px solid rgba(200,148,63,0.15); border-radius:0; max-width:300px; width:100%; margin:0;">
+      </blockquote>
+    </div>
+    <script async src="//www.instagram.com/embed.js"></script>
+
+    <style>
+      @media (max-width: 1300px) { .reels-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+      @media (max-width: 700px) { .reels-grid { grid-template-columns: 1fr !important; } }
+    </style>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="reveal">
+      <h2>Your world<br />deserves to<br />be <em>seen.</em></h2>
+      <p>Whether you're building a personal brand, attracting investors, or growing a following — we create content that captures what makes you different.</p>
+      <a href="mailto:dani@drvizualss.com" class="btn-primary">Book a strategy call</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">drvizuals</span>
+    <div class="footer-meta">
+      <div>© 2026 drvizuals. All rights reserved.</div>
+      <div style="margin-top:4px;font-size:10px;">World Wide Agency</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/drvizuals" target="_blank">Instagram</a>
+      <a href="https://tiktok.com/@donewithcontent_" target="_blank">TikTok</a>
+      <a href="mailto:dani@drvizualss.com">Email</a>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
